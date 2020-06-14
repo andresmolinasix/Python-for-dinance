@@ -1,0 +1,632 @@
+# Math module
+import math 
+round(math.pi,)
+
+# ### Charper 1 
+# -The value of a invesment or present value is calculate as follow, were I´ll recived 100 at the endd of each six months by two years and the real rate is 10% biannual , so What´s the present value of that invesment.  
+# 
+
+#Present value
+round(100/pow(1.1, 4),4)
+
+# Different way to do it 
+print("\n\tPresent Vale")
+
+PV=100
+n=4
+R=0.10
+round(PV/pow(1+R,n),4)
+
+# PV - Perpetuity
+print("\n\tPerpetuity")
+PV/R
+
+
+# Perpetuity with growth rate.
+print("\n\tPepetuity with growth rate, like inflation ")
+
+I=0.03
+PV/R-I
+
+print("\n\tPPV=C/pow(1+R,n-1)*R")
+
+
+del n
+n=9
+k=PV/R/pow(1+R,n)
+
+
+# In[64]:
+
+
+from math import*
+pi 
+e
+round(sqrt(16),90)
+
+
+# In[65]:
+
+
+type(pi)
+
+
+# In[67]:
+
+
+type(n)
+
+
+# In[69]:
+
+
+x=("Aleida",pi, round(k,3) )
+x
+
+
+# In[70]:
+
+
+len (x)
+
+
+# In[84]:
+
+
+type(x)
+n1=x[0]
+n1.upper()
+
+
+# In[26]:
+
+
+def pv_f(pv,r,n):
+    return pv/(1+r)**n
+
+
+# ### Build smalls  functions 
+# - To do it just need the command definition or def** then define the inputs variables and the respective process among they 
+
+# In[42]:
+
+
+pv_f(100,0.1,4)
+dir()
+
+
+# In[28]:
+
+
+round(pv_f(100,0.1,4),4)
+
+
+# In[29]:
+
+
+from fin101 import*
+
+
+# ## dir2() functions we reate a library with a location, the most usual is c:\python32
+
+# In[30]:
+
+
+def dir2(path="c:\python32"):
+ from os import listdir
+ print(listdir(path))
+
+
+# ## One way to define 
+
+# In[31]:
+
+
+def pv_1(fv,r,n):
+    pv=fv/pow(1+r,n)
+    return pv
+
+
+# In[32]:
+
+
+pv_1(100,0.1,4)+pv_1(100,0.1,3)+pv_1(100,0.1,2)+pv_1(100,0.1,1)
+
+
+# In[33]:
+
+
+pv_1(100,0.01,4)+pv_1(100,0.01,3)+pv_1(100,0.01,2)+pv_1(100,0.01,1)
+
+
+# ## Second wat to define
+
+# In[34]:
+
+
+pv_1(fv=100,r=0.1,n=4)+pv_1(r=0.1,n=3,fv=100)
+
+
+# ## Thrid way to define
+
+# In[35]:
+
+
+pv_1(100,r=0.1,n=4)
+
+
+# In[36]:
+
+
+dir()
+pv_1
+
+
+# In[26]:
+
+
+import python_for_finance 
+
+
+# In[30]:
+
+
+dir()
+_i18
+
+
+# In[37]:
+
+
+plot([1,2,3,4])
+
+
+# In[4]:
+
+
+from matplotlib.pyplot import *
+plot([1,2,3,10])
+xlabel("x- axis")
+ylabel("my numbers")
+title("my figure")
+show()
+
+
+# # Difurcation diagram 
+
+# In[38]:
+
+
+def dif(x,r):
+    dif=r*x*(1-x)
+    return dif
+    
+
+
+# In[39]:
+
+
+dif(100,0.6)
+
+
+# In[40]:
+
+
+def pv(x,r,n):
+    return x/pow(1+r,n)
+
+
+# In[41]:
+
+
+pv(100,0.1,4)
+
+
+# In[17]:
+
+
+dir()
+
+
+# In[ ]:
+
+
+
+
+
+# In[44]:
+
+
+help(pv_1)
+
+
+# # Types of comments 
+# -Using # 
+# -Using """
+
+# In[48]:
+
+
+def pv_f(fv,r,n):
+ """
+ Objective: estimate present value
+ fv: fture value
+ r : discount periodic rate
+ n : number of periods
+ formula : fv/(1+r)**n
+ e.g.,
+ >>>pv_f(100,0.1,1)
+ 90.9090909090909
+ >>>pv_f(r=0.1,fv=100,n=1)
+ 90.9090909090909
+ >>>pv_f(n=1,fv=100,r=0.1)
+ 90.9090909090909
+ """
+ return fv/(1+r)**n
+pv_f(100,0.1,4)
+
+
+# In[49]:
+
+
+help(pv_f)
+
+
+# In[47]:
+
+
+def pv1(fv,r,n): #Comments 
+    return fv/pow(1+r,n)
+pv1(100,0.1,4)
+
+
+# In[55]:
+
+
+def perpetuity(c,r,g): 
+    """
+    Annuality payment
+    c: Cash flow 
+    r: efective rate
+    g: growth rate 
+    
+    """
+    if (r < g):
+        print ("r<g Error")
+    else :
+        return c/(r-g)
+    
+    
+    
+
+    
+
+
+# In[56]:
+
+
+perpetuity(100,0.1,0.9)
+
+
+# In[57]:
+
+
+perpetuity(100,0.1,0.09)
+
+
+# In[3]:
+
+
+from matplotlib.finance import quotes_historical_yahoo
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+ticker='IBM'
+begdate=(2008,10,1)
+enddate=(2013,11,30)
+p = quotes_historical_yahoo(ticker, begdate, enddate,asobject=True,
+adjusted=True)
+
+
+# In[9]:
+
+
+def pv_ff(fv,r,g,n):
+    if(r==n):
+        return(fv/pow(1+r,n))
+    else: 
+        return(fv/(r-g)/pow(1+r,n))
+
+
+# In[10]:
+
+
+pv_ff(100,0.03,0.02,0.01)
+
+
+# In[11]:
+
+
+pv_ff(100,0.03,0.02,0.03)
+
+
+# # Annuity estimation 
+# - This flow maily represent the ammount payment in the same time range.There are two regularity in rates,  DUE or Anticipate, so for annuity flows works in the same way. 
+# - Annuities show the flow cash of rents, mortgage etc 
+
+# In[20]:
+
+
+print ("\n\tPV(annuity ANTICIPATE)=(PMT/R)*(1-(1/(1+R)**n))")
+print ("\n\tPV(annuity DUE)=(PMT/R)*(1-(1/(1+R)**n))*(1+R)")
+print ("\n\tFV(annuity ANTICIPATE)=(PMT/R)*((1+R)**n-1)")
+print ("\n\tFV(annuity DUE)=(PMT/R)*((1+R)**n-1)*(1+R)")
+print("\n\tpv=present value","\n\tFv=future value","\n\tR=discount rate", "\n\tn=number of the periods")
+
+
+# - These also can be an annuity perpetue, just like as follow 
+
+# ### Coverting interest rate 
+# - Effective annual rate (EAR)
+# - Annual Percentage Rate (APR)
+# - Effective Rate 
+
+# In[28]:
+
+
+print ("\n\tEAR = ((1+ (APR/m))**m)-1","\n\tm = compounting fequency within one year")
+print("\n\tEffective R = ARP/m ")
+
+
+# In[21]:
+
+
+(1+0.05/2)**2-1
+
+
+# In[22]:
+
+
+((1+0.05/2)**2)-1
+
+
+# In[27]:
+
+
+(1+0.051/4)**4-1
+
+
+# In[30]:
+
+
+(0.05/12)
+
+
+# In[31]:
+
+
+0.05/2
+
+
+# In[32]:
+
+
+(1+0.025)**2-1
+
+
+# In[33]:
+
+
+(1+0.05/12)**12-1
+
+
+# In[35]:
+
+
+(1+0.025)**(2/12)-1
+
+
+# -Assume that we plan to borrow $300,000 to buy a house with a 30-year loan. What
+# is the monthly payment if our bank offers us 5 percent annual rate compounding
+# semiannually
+
+# In[36]:
+
+
+r=(1+0.05/2)**(2/12)-1
+r
+
+
+# In[52]:
+
+
+pv=300000
+n=30*12
+pmt=pv*r/(1-1/(1+r)**n)
+pmt
+
+
+# In[41]:
+
+
+pmt*1000
+
+
+# -Assume that we plan to borrow $300,000 to buy a house with a 30-year loan repay due. What
+# is the monthly payment if our bank offers us 5 percent annual rate compounding
+# semiannually
+
+# In[53]:
+
+
+r=(1+0.05/2)**(2/12)-1
+r
+n=30*12
+pv=300000
+pmtv=pv*r/(1-1/(1+r)**n)/(1+r)
+pmtv
+
+
+# In[57]:
+
+
+r
+
+
+# In[58]:
+
+
+fv=(pmt*(((1+r)**n)-1))/r
+fv
+
+
+# #Continusly compuonded interest rate
+# - If the compounding freuency increases futher and futher, sucah as by hour, minute and second. The limit is called continously compounded.
+# 
+# $ R(C)=m*Ln(1+APR/M)$
+# - For example, if a given APR of 5 percent is compounded semiannually
+
+# In[66]:
+
+
+import math
+
+ARP=0.05
+M=2
+RC=math.log(1+ARP/M)
+RC
+
+
+# In[70]:
+
+
+RCARP=M*math.log(1+ARP/M)
+RCARP
+
+
+# # Data frames 
+# - For python,  atuple is a data type or object that could contain multiple data types such as integer, float, string and another tuple. It´s define with ()
+# - A list, also, can contain multiple data types integer, float, string and another list. This beging with []
+
+# In[72]:
+
+
+x=(1,"Aleida","te amo")
+x
+
+
+# In[77]:
+
+
+x[0]
+
+
+# In[79]:
+
+
+record=["mamá","te","amo"]
+record
+
+
+# In[80]:
+
+
+record[0]
+
+
+# # Net present value and NVP rule
+# -NPV is defined as the difference between the present value of all benefits less costs, as show follow formula 
+# 
+# $ NPV = PV(benefits) - PV(costs)$
+
+# In[84]:
+
+
+def npv_f(rate, cashflows):
+    total=0.0
+    for i, cashflow in enumerate (cashflows):
+        total += cashflow /(1+rate)**i
+    return total
+    
+
+
+# In[132]:
+
+
+r=0.05
+cashflows=[-100,20,40,50,20,10]
+npv_f(r,cashflows)
+
+
+# In[117]:
+
+
+def pvt_f(fv,rat):
+    to=0.0
+    for  i, fv in enumerate (fv):
+        to += fv/(1+rat)**i
+    return to
+
+
+# In[119]:
+
+
+ra=0.1
+fvs=[0,100,100]
+pvt_f(fvs,ra)
+
+
+# # Payback period and payback rule
+# - Payback period is defined as the number of years we needed to retund unicil invesment
+# - precding example 20+40+50, so in the third year return the invesment
+# - 40/50 =2.8 years
+# 
+# 
+# $ If Payback (project) < T <- accept $
+# 
+# $ If Payback (project)> T <- reject $
+
+# # IIR and IIR rule 
+# - Is the discount rate resulting in a zero NVP.
+# -Rule: if our project´s IIr is bigger thn our cost of capital, we accept i. Otherwise reject it. 
+# 
+# $ If IRR (project)>  R -> accept $
+# 
+# $ If IRR (project)< R -> Reject  $
+
+# In[141]:
+
+
+def IIR_F(cashflows, interations=100):
+    rate = 1.0 
+    invesment=cashflows[0]
+    for i in range (1, interations +1):
+        rate*=(1-npv_f(rate,cashflows)/invesment)
+    return rate
+
+
+# In[142]:
+
+
+from npv_f import*
+cashflows=[-100,20,40,50,20,10]
+x=IIR_F(cashflows)
+x
+    
+
+
+# In[161]:
+
+
+from os import listdir
+def dir2(path):
+ from os import listdir
+ print(listdir(path)) 
+
+
+# In[ ]:
+
+
+
+
+
